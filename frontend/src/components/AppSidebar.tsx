@@ -31,7 +31,7 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="px-4 pt-8 pb-6 flex justify-center">
-            <img src={logo} alt="Logo" className={(collapsed ? "h-16 w-16" : "h-24 w-24") + " rounded-[50%]"} />
+            <img src={logo} alt="Logo" className={(collapsed ? "h-16 w-16" : "h-24 w-24") + " rounded-[50%] mt-4"} />
           </SidebarGroupLabel>
           <SidebarGroupContent className="mt-6">
             <SidebarMenu className="space-y-2">
