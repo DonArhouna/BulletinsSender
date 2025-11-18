@@ -217,7 +217,7 @@ const Client = () => {
     <div className="min-h-screen bg-slate-50">
       <header className="h-16 flex items-center justify-between px-6 sticky top-0 z-20 bg-sky-100/90 backdrop-blur border-b border-sky-200 shadow-sm">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Logo" className="h-12 w-12" />
+          <img src={logo} alt="Logo" className="h-12 w-12 rounded-[50%]" />
           <div className="hidden sm:block">
             <h1 className="text-base font-semibold text-sky-900">Bulletin Sender</h1>
             <p className="text-xs text-sky-800/80">Espace Client</p>
