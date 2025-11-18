@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Upload, Send, History, User, Settings, RefreshCw, Loader2, CheckCircle2, FileText, FolderOpen, Download } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.svg";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
