@@ -1,0 +1,15 @@
+[
+  {
+    "email": "admin@admin.com",
+    "username": null,
+    "hashed_password": "$2b$12$Hr3foVxIFQkn4W/YjJmMx.Kl2iPFHjAQOoRrbSc8snPWQBSH/fO9m",
+    "full_name": "Super Admin",
+    "company": null,
+    "is_active": true,
+    "is_superuser": true,
+    "first_login": true,
+    "tenant_id": null,
+    "subscription_plan_id": null,
+    "pricing_plan_id": null
+  }
+]

@@ -1,0 +1,369 @@
+
+--- Exception during /auth/login ---
+Traceback (most recent call last):
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: ERREUR:  la colonne user.subscription_plan_id n'existe pas
+LINE 1: ..._first_login, "user".tenant_id AS user_tenant_id, "user".sub...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\app\modules\users\router.py", line 35, in login_access_token
+    user = crud.user.authenticate(
+        db, email_or_username=email_or_username, password=password
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\app\modules\users\crud.py", line 79, in authenticate
+    user = self.get_by_email_or_username(db, email_or_username=email_or_username)
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\app\modules\users\crud.py", line 18, in get_by_email_or_username
+    ).first()
+      ~~~~~^^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) ERREUR:  la colonne user.subscription_plan_id n'existe pas
+LINE 1: ..._first_login, "user".tenant_id AS user_tenant_id, "user".sub...
+                                                             ^
+
+[SQL: SELECT "user".id AS user_id, "user".email AS user_email, "user".username AS user_username, "user".hashed_password AS user_hashed_password, "user".full_name AS user_full_name, "user".company AS user_company, "user".is_active AS user_is_active, "user".is_superuser AS user_is_superuser, "user".first_login AS user_first_login, "user".tenant_id AS user_tenant_id, "user".subscription_plan_id AS user_subscription_plan_id, "user".pricing_plan_id AS user_pricing_plan_id, "user".created_at AS user_created_at, "user".updated_at AS user_updated_at 
+FROM "user" 
+WHERE "user".email = %(email_1)s OR "user".username = %(username_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'foo', 'username_1': 'foo', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+--- Exception during /auth/login ---
+Traceback (most recent call last):
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: ERREUR:  la colonne user.subscription_plan_id n'existe pas
+LINE 1: ..._first_login, "user".tenant_id AS user_tenant_id, "user".sub...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\app\modules\users\router.py", line 35, in login_access_token
+    user = crud.user.authenticate(
+        db, email_or_username=email_or_username, password=password
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\app\modules\users\crud.py", line 79, in authenticate
+    user = self.get_by_email_or_username(db, email_or_username=email_or_username)
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\app\modules\users\crud.py", line 18, in get_by_email_or_username
+    ).first()
+      ~~~~~^^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) ERREUR:  la colonne user.subscription_plan_id n'existe pas
+LINE 1: ..._first_login, "user".tenant_id AS user_tenant_id, "user".sub...
+                                                             ^
+
+[SQL: SELECT "user".id AS user_id, "user".email AS user_email, "user".username AS user_username, "user".hashed_password AS user_hashed_password, "user".full_name AS user_full_name, "user".company AS user_company, "user".is_active AS user_is_active, "user".is_superuser AS user_is_superuser, "user".first_login AS user_first_login, "user".tenant_id AS user_tenant_id, "user".subscription_plan_id AS user_subscription_plan_id, "user".pricing_plan_id AS user_pricing_plan_id, "user".created_at AS user_created_at, "user".updated_at AS user_updated_at 
+FROM "user" 
+WHERE "user".email = %(email_1)s OR "user".username = %(username_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'admin@admin.com', 'username_1': 'admin@admin.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+
+--- Exception during /auth/login ---
+Traceback (most recent call last):
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: ERREUR:  la colonne user.subscription_plan_id n'existe pas
+LINE 1: ..._first_login, "user".tenant_id AS user_tenant_id, "user".sub...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\app\modules\users\router.py", line 35, in login_access_token
+    user = crud.user.authenticate(
+        db, email_or_username=email_or_username, password=password
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\app\modules\users\crud.py", line 79, in authenticate
+    user = self.get_by_email_or_username(db, email_or_username=email_or_username)
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\app\modules\users\crud.py", line 18, in get_by_email_or_username
+    ).first()
+      ~~~~~^^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+        params,
+        ^^^^^^^
+        execution_options={"_sa_orm_load_options": self.load_options},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2351, in execute
+    return self._execute_internal(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        statement,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        _add_event=_add_event,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\session.py", line 2249, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<4 lines>...
+        conn,
+        ^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\orm\context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+        statement, params or {}, execution_options=execution_options
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1419, in execute
+    return meth(
+        self,
+        distilled_parameters,
+        execution_options or NO_OPTIONS,
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self, distilled_params, execution_options
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+        dialect,
+    ...<8 lines>...
+        cache_hit=cache_hit,
+    )
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1846, in _execute_context
+    return self._exec_single_context(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        dialect, context, statement, parameters
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1986, in _exec_single_context
+    self._handle_dbapi_exception(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        e, str_statement, effective_parameters, cursor, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1967, in _exec_single_context
+    self.dialect.do_execute(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        cursor, str_statement, effective_parameters, context
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\RHONE\OneDrive\Desktop\SendBulletin\backend\venv\Lib\site-packages\sqlalchemy\engine\default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) ERREUR:  la colonne user.subscription_plan_id n'existe pas
+LINE 1: ..._first_login, "user".tenant_id AS user_tenant_id, "user".sub...
+                                                             ^
+
+[SQL: SELECT "user".id AS user_id, "user".email AS user_email, "user".username AS user_username, "user".hashed_password AS user_hashed_password, "user".full_name AS user_full_name, "user".company AS user_company, "user".is_active AS user_is_active, "user".is_superuser AS user_is_superuser, "user".first_login AS user_first_login, "user".tenant_id AS user_tenant_id, "user".subscription_plan_id AS user_subscription_plan_id, "user".pricing_plan_id AS user_pricing_plan_id, "user".created_at AS user_created_at, "user".updated_at AS user_updated_at 
+FROM "user" 
+WHERE "user".email = %(email_1)s OR "user".username = %(username_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'email_1': 'admin@admin.com', 'username_1': 'admin@admin.com', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
